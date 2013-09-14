@@ -50,10 +50,13 @@ public class UAPI {
 	public String seralizeLocation(Location loc) {
 		return GenericFunctions.seralizeLocation(loc);
 	}
-		
+	
+	/**
+	 * TODO
+	 * @param a
+	 */
 	public void registerArena(Arena a) {
 		UAPIData.arenas.add(a);
 	}
-		
 	
 }

@@ -1,0 +1,3 @@
+name: UAPI
+main: UAPI.georgep.pokuit.UAPIPlugin
+version: 1.0

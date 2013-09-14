@@ -4,31 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import UAPI.georgep.pokuit.Functions.GenericFunctions;
+import UAPI.georgep.pokuit.uapiEvents.arena.PlayerJoinArenaEvent;
 
 public abstract class Arena {
 	
-	private String displayName = "";
-	private String id = "";
-	private int timeToWaitTillStart = 0;
-	private Plugin pl = null;
-	private BukkitTask taskId = null;
+	protected String displayName = "";
+	protected String id = "";
+	protected int timeToWaitTillStart = 0;
+	protected Plugin pl = null;
+	protected BukkitTask taskId = null;
 	
-	private HashMap<String,String> data;
-	private ArrayList<String> players;
+	protected HashMap<String,Object> data = new HashMap<String,Object>();
+	private ArrayList<String> players = new ArrayList<String>();
 	
-	
-	/**
-	 * Constructor of Arena
-	 * @param data
-	 * 	- A hashmap containing data important to the arena
-	 */
-	public Arena(Plugin pl, HashMap<String,String> data) {
-		this.data = data;
+	public Arena(Plugin pl, HashMap<String, Object> data) {
 		this.pl = pl;
+		this.data = data;
+		
 	}
 	
 	/**
@@ -79,18 +75,38 @@ public abstract class Arena {
 	}
 	
 	
+	public final void addPlayer(Player __p) {
+		
+		String p = __p.getName();
+		
+		PlayerJoinArenaEvent e = new PlayerJoinArenaEvent(__p, this);
+		
+		pl.getServer().getPluginManager().callEvent(e);
+		
+		if(!e.isCancelled()) {
+			players.add(p);
+		} 
+	}
+	
 	public abstract void setup();
 	
 	public abstract void countDownMessages(int i);
 	
 	public abstract void start();
 	
-	public abstract boolean onPrePlayerJoinArenaEvent();
+	
+	
+	//public abstract boolean onPrePlayerJoinArenaEvent();
 
-	public abstract void onPrePlayerLeaveArenaEvent();
+	//public abstract void onPrePlayerLeaveArenaEvent();
+	
+	protected abstract HashMap<String,Object> getData();
+	
+	protected abstract Plugin getPlugin();
 	
 	
 	////// None abstract methods ///////
 	public void onTimeUpdateEvent() {}
+
 	
 }

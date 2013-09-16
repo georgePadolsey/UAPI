@@ -1,19 +1,14 @@
 package UAPI.georgep.pokuit;
 
-import java.util.HashMap;
-
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import UAPI.georgep.pokuit.Objects.HungerGamesArena;
 import UAPI.georgep.pokuit.UAPI.UAPI;
 
 public class UAPIPlugin extends JavaPlugin {
 	
-	HungerGamesArena a;
 	
 	public void onEnable() {
-		a = new HungerGamesArena(this, new HashMap<String, Object>());
 	}
 	
 	public void onDisable() {

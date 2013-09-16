@@ -2,11 +2,8 @@ package UAPI.georgep.pokuit.Objects;
 
 import java.util.HashMap;
 
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-
-import UAPI.georgep.pokuit.uapiEvents.arena.PlayerJoinArenaEvent;
 
 public class HungerGamesArena extends Arena implements Listener{
 	
@@ -18,12 +15,6 @@ public class HungerGamesArena extends Arena implements Listener{
 	@Override
 	public void setup() {
 		
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void countDownMessages(int i) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -34,19 +25,9 @@ public class HungerGamesArena extends Arena implements Listener{
 	}
 
 	@Override
-	protected HashMap<String, Object> getData() {
-		return data;
-	}
-
-	@Override
-	protected Plugin getPlugin() {
-		return pl;
+	public String countDownMessages(int i) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
-	@EventHandler
-	public void onPlayerJoinArenaEvent(PlayerJoinArenaEvent e) {
-		pl.getLogger().info("EVENT WORKS :)");
-	}
-
-
 }

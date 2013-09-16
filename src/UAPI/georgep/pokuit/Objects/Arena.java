@@ -24,7 +24,7 @@ public abstract class Arena {
 	public Arena(Plugin pl, HashMap<String, Object> data) {
 		this.pl = pl;
 		this.data = data;
-		
+		setup();
 	}
 	
 	/**
@@ -59,13 +59,20 @@ public abstract class Arena {
 					start();
 				}
 				
-				countDownMessages(i);
+				sendMessageToPlayers(countDownMessages(i));
 				
 				i--;
 				
 				
 			}
 			
+			public void sendMessageToPlayers(String s) {
+				for(String p :players) {
+					try {
+						pl.getServer().getPlayer(p).sendMessage(s);
+					} catch(NullPointerException e) {}
+				}
+			}
 		}, 0, 20);
 	}
 	
@@ -74,7 +81,10 @@ public abstract class Arena {
 		taskId = null;
 	}
 	
-	
+	/**
+	 * Adds player to arena
+	 * @param __p Player
+	 */
 	public final void addPlayer(Player __p) {
 		
 		String p = __p.getName();
@@ -85,28 +95,28 @@ public abstract class Arena {
 		
 		if(!e.isCancelled()) {
 			players.add(p);
+			if(e.getTeleportTo() != null) {
+				__p.teleport(e.getTeleportTo());
+			}
 		} 
 	}
 	
+	
+	/**
+	 * Automatically runs on constructor creation
+	 */
 	public abstract void setup();
 	
-	public abstract void countDownMessages(int i);
+	/**
+	 * Every second Of the countdown it fires with the seconds left. You can choose to ignore it by returning ""<br>
+	 * Or saying something to all the players in the arena
+	 * @param i
+	 */
+	public abstract String countDownMessages(int i);
 	
+	/**
+	 * Runs when the arena has finished its countdown
+	 */
 	public abstract void start();
-	
-	
-	
-	//public abstract boolean onPrePlayerJoinArenaEvent();
-
-	//public abstract void onPrePlayerLeaveArenaEvent();
-	
-	protected abstract HashMap<String,Object> getData();
-	
-	protected abstract Plugin getPlugin();
-	
-	
-	////// None abstract methods ///////
-	public void onTimeUpdateEvent() {}
-
 	
 }

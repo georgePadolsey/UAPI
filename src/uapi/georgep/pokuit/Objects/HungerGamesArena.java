@@ -5,6 +5,11 @@ import java.util.HashMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
+/**
+ * EXAMPLE CLASS MADE WHILE DEVELOPMENT OF ARENA CLASS IS HAPPENING
+ * @author George
+ *
+ */
 public class HungerGamesArena extends Arena implements Listener{
 	
 	public HungerGamesArena(Plugin pl, HashMap<String, Object> data) {

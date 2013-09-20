@@ -1,7 +1,7 @@
-package UAPI.georgep.pokuit.Functions;
+package uapi.georgep.pokuit.Functions;
 
-import UAPI.georgep.pokuit.Data.UAPIData;
-import UAPI.georgep.pokuit.Objects.Arena;
+import uapi.georgep.pokuit.Data.UAPIData;
+import uapi.georgep.pokuit.Objects.Arena;
 
 public class ArenaFunctions {
 	/**

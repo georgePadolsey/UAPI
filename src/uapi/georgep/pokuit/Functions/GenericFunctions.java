@@ -1,4 +1,4 @@
-package UAPI.georgep.pokuit.Functions;
+package uapi.georgep.pokuit.Functions;
 
 import java.util.UUID;
 

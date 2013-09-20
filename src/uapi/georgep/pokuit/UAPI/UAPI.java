@@ -1,12 +1,14 @@
-package UAPI.georgep.pokuit.UAPI;
+package uapi.georgep.pokuit.UAPI;
 
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
-import UAPI.georgep.pokuit.Data.UAPIData;
-import UAPI.georgep.pokuit.Functions.ArenaFunctions;
-import UAPI.georgep.pokuit.Functions.GenericFunctions;
-import UAPI.georgep.pokuit.Objects.Arena;
+import uapi.georgep.pokuit.Data.UAPIData;
+import uapi.georgep.pokuit.Functions.ArenaFunctions;
+import uapi.georgep.pokuit.Functions.GenericFunctions;
+import uapi.georgep.pokuit.Managers.ArenaManager;
+import uapi.georgep.pokuit.Objects.Arena;
+
 
 public class UAPI {
 	
@@ -52,11 +54,13 @@ public class UAPI {
 	}
 	
 	/**
-	 * TODO
-	 * @param a
+	 * Registers The Arena Manager
+	 * @see ArenaManager
+	 * @since
+	 *    1.0
 	 */
-	public void registerArena(Arena a) {
-		UAPIData.arenas.add(a);
+	public ArenaManager getArenaManager() {
+		return UAPIData.arenaManager;
 	}
 	
 }

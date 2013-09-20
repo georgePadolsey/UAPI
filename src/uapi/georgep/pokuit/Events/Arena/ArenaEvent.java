@@ -1,8 +1,9 @@
-package UAPI.georgep.pokuit.uapiEvents.arena;
+package uapi.georgep.pokuit.Events.Arena;
 
 import org.bukkit.event.Event;
 
-import UAPI.georgep.pokuit.Objects.Arena;
+import uapi.georgep.pokuit.Objects.Arena;
+
 
 public abstract class ArenaEvent extends Event {
 	

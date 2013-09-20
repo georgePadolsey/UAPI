@@ -1,4 +1,4 @@
-package UAPI.georgep.pokuit.enums;
+package uapi.georgep.pokuit.Enums;
 
 import org.bukkit.ChatColor;
 

@@ -1,28 +1,35 @@
-package UAPI.georgep.pokuit.uapiEvents.arena;
+package uapi.georgep.pokuit.Events.Arena;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
-import UAPI.georgep.pokuit.Objects.Arena;
+import uapi.georgep.pokuit.Objects.Arena;
+
 
 /**
  * 
- * An Event that fires when a player leaves an arena.<br>
+ * An Event that fires when a player joins an arena.
+ * Can be cancelled.<br>
+ * If cancelled it prevents entry to the arena<br>
  * This also handles where the player will be teleported to
- * on leaving an arena.
+ * on entry to an arena.
  * 
  * @see ArenaEvent
  * @since 1.0
  * @author George
  *
  */
-public class PlayerLeaveArenaEvent extends ArenaEvent {
+public class PlayerJoinArenaEvent extends ArenaEvent implements Cancellable {
 	
 	private static final HandlerList handlers = new HandlerList();
+	private boolean cancelled;
 	private Location teleportTo = null;
 	String p;
+	
 	
 	/**
 	 * Constructor of a PlayerJoinArenaEvent
@@ -30,11 +37,13 @@ public class PlayerLeaveArenaEvent extends ArenaEvent {
 	 * @param p - The Player involved in the event
 	 * @param arena - The Arena involved in the event
 	 */
-	public PlayerLeaveArenaEvent(Player p, Arena arena) {
+	public PlayerJoinArenaEvent(Player p, Arena arena) {
 		super(arena);
 		this.p = p.getName();
+		this.cancelled = false;
+		
 	}
-
+	
 	/**
 	 * Gets The Player that is included in this event's name
 	 * @return Player Name
@@ -68,7 +77,25 @@ public class PlayerLeaveArenaEvent extends ArenaEvent {
 	}
 	
 	/**
-	 * Sets where to teleport the player to after leaving the arena
+	 * Returns if the event is cancelled or not
+	 * @return boolean - True if event has been cancelled false if not
+	 */
+	@Override
+	public boolean isCancelled() {
+		return cancelled;
+	}
+	
+	/**
+	 * Sets whether the event is cancelled
+	 * @param cancel
+	 */
+	@Override
+	public void setCancelled(boolean cancel) {
+		this.cancelled = cancel;
+	}
+	
+	/**
+	 * Sets where to teleport the player to after joining the arena
 	 * @param teleportTo - A Location
 	 * @see Location
 	 */
@@ -76,7 +103,7 @@ public class PlayerLeaveArenaEvent extends ArenaEvent {
 		this.teleportTo = teleportTo;
 	}
 	/**
-	 * Gets where you want to teleport the player to after leaving the arena
+	 * Gets where you want to teleport the player to after joining the arena
 	 * @return Location
 	 */
 	public Location getTeleportTo() {

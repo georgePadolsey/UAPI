@@ -1,14 +1,17 @@
-package UAPI.georgep.pokuit;
+package uapi.georgep.pokuit;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import UAPI.georgep.pokuit.UAPI.UAPI;
+import uapi.georgep.pokuit.UAPI.UAPI;
+import uapi.georgep.pokuit.Data.UAPIData;
+import uapi.georgep.pokuit.Managers.ArenaManager;
+
 
 public class UAPIPlugin extends JavaPlugin {
 	
-	
 	public void onEnable() {
+		UAPIData.arenaManager = new ArenaManager(this);
 	}
 	
 	public void onDisable() {

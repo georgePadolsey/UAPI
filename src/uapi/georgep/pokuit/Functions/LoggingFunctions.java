@@ -1,10 +1,11 @@
-package UAPI.georgep.pokuit.Functions;
+package uapi.georgep.pokuit.Functions;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.Plugin;
 
-import UAPI.georgep.pokuit.enums.errorStrings;
+import uapi.georgep.pokuit.Enums.errorStrings;
+
 
 public class LoggingFunctions {
 	public static void debug(String str) {

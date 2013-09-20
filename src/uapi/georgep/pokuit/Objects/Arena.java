@@ -1,4 +1,4 @@
-package UAPI.georgep.pokuit.Objects;
+package uapi.georgep.pokuit.Objects;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,8 +8,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import UAPI.georgep.pokuit.uapiEvents.arena.PlayerJoinArenaEvent;
+import uapi.georgep.pokuit.Events.Arena.PlayerJoinArenaEvent;
 
+
+/**
+ * A Abstract Class To Build apon
+ * @see <a href="https://github.com/georgePadolsey/UAPI/wiki/Setting-up-an-arena">https://github.com/georgePadolsey/UAPI/wiki/Setting-up-an-arena</a>
+ * @author George
+ *
+ */
 public abstract class Arena {
 	
 	protected String displayName = "";

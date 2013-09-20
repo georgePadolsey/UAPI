@@ -1,4 +1,4 @@
-package UAPI.georgep.pokuit.Objects;
+package uapi.georgep.pokuit.Objects;
 
 import java.util.HashMap;
 

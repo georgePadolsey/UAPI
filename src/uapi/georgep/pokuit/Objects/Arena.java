@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
+import uapi.georgep.pokuit.Events.Arena.ArenaStartArenaEvent;
 import uapi.georgep.pokuit.Events.Arena.PlayerJoinArenaEvent;
 
 
@@ -15,13 +16,15 @@ import uapi.georgep.pokuit.Events.Arena.PlayerJoinArenaEvent;
  * A Abstract Class To Build apon
  * @see <a href="https://github.com/georgePadolsey/UAPI/wiki/Setting-up-an-arena">https://github.com/georgePadolsey/UAPI/wiki/Setting-up-an-arena</a>
  * @author George
- *
  */
 public abstract class Arena {
 	
-	protected String displayName = "";
-	protected String id = "";
+	protected String id;
+	protected String displayName;
+	protected static String type;
+	
 	protected int timeToWaitTillStart = 0;
+	
 	protected Plugin pl = null;
 	protected BukkitTask taskId = null;
 	
@@ -51,6 +54,14 @@ public abstract class Arena {
 	}
 	
 	/**
+	 * Gets Type Of Arena
+	 * @return String - Type of Arena
+	 */
+	public final String getType() {
+		return type;
+	}
+	
+	/**
 	 * 
 	 */
 	public final void countDownToStart() {
@@ -70,15 +81,6 @@ public abstract class Arena {
 				
 				i--;
 				
-				
-			}
-			
-			public void sendMessageToPlayers(String s) {
-				for(String p :players) {
-					try {
-						pl.getServer().getPlayer(p).sendMessage(s);
-					} catch(NullPointerException e) {}
-				}
 			}
 		}, 0, 20);
 	}
@@ -108,6 +110,26 @@ public abstract class Arena {
 		} 
 	}
 	
+	public final void start() {
+		ArenaStartArenaEvent e = new ArenaStartArenaEvent(this);
+		
+		pl.getServer().getPluginManager().callEvent(e);
+		
+		if(e.isCancelled()) {
+			countDownToStart();
+		}  else {
+			__start();
+		}
+	}
+	
+	public void sendMessageToPlayers(String s) {
+		for(String p :players) {
+			try {
+				pl.getServer().getPlayer(p).sendMessage(s);
+			} catch(NullPointerException e) {}
+		}
+	}
+	
 	
 	/**
 	 * Automatically runs on constructor creation
@@ -124,6 +146,12 @@ public abstract class Arena {
 	/**
 	 * Runs when the arena has finished its countdown
 	 */
-	public abstract void start();
+	protected abstract void __start();
+
+	//TODO
+	public abstract void setDisplayName(String dName);
+	
+	//TODO
+	public abstract void setId(String id);
 	
 }

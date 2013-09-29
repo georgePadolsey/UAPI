@@ -1,3 +1,3 @@
 name: UAPI
-main: UAPI.georgep.pokuit.UAPIPlugin
+main: uapi.georgep.pokuit.UAPIPlugin
 version: 1.0

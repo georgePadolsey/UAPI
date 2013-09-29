@@ -23,8 +23,7 @@ public class ArenaManager {
 	public void unRegisterArena(Arena a) {
 		UAPIData.arenas.remove(a);
 	}
-	
-	
+		
 	public Arena[] getArenasByType(Class<? extends Arena> clazz) {
 		ArrayList<Arena> ar = new ArrayList<Arena>();
 		for(Arena a:UAPIData.arenas) {
@@ -43,6 +42,7 @@ public class ArenaManager {
 		}
 		return null;
 	}
+	
 	public Arena getArenaByDisplayName(String displayName) {
 		for(Arena a:UAPIData.arenas) {
 			if(a.getDisplayName().equals(displayName)) {
@@ -50,5 +50,9 @@ public class ArenaManager {
 			}
 		}
 		return null;
+	}
+	
+	public Arena[] getAllArenas() {
+		return (Arena[])UAPIData.arenas.toArray();
 	}
 }

@@ -1,11 +1,15 @@
 package uapi.georgep.pokuit.UAPI;
 
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import uapi.georgep.pokuit.Data.UAPIData;
+import uapi.georgep.pokuit.Enums.AnnouncementType;
 import uapi.georgep.pokuit.Functions.ArenaFunctions;
 import uapi.georgep.pokuit.Functions.GenericFunctions;
+import uapi.georgep.pokuit.Functions.LoggingFunctions;
 import uapi.georgep.pokuit.Managers.ArenaManager;
 import uapi.georgep.pokuit.Objects.Arena;
 
@@ -23,6 +27,7 @@ public class UAPI {
 	 */
 	public UAPI(Plugin plugin) {
 		this.plugin = plugin;
+		plugin.getServer().getWorld("test").spawnEntity(new Location(plugin.getServer().getWorld("test"), 1,1,1), EntityType.BAT);
 	}
 	
 	/**
@@ -63,4 +68,11 @@ public class UAPI {
 		return UAPIData.arenaManager;
 	}
 	
+	public void announceMessage(String message, AnnouncementType at, Player[] players) {
+		try {
+			UAPIData.announcementManager.announce(message, at, players);
+		} catch(IllegalArgumentException e) {
+			LoggingFunctions.logError(e, plugin);
+		}
+	}
 }

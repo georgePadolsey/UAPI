@@ -140,6 +140,30 @@ public class GenericFunctions {
 		return false;
 	}
 	*/
+	
+	/**
+	 * Checks if Block is within the minumum and maximum passed in
+	 * @param block
+	 * @param min
+	 * @param max
+	 * @return true if it is. False if it isn't
+	 */
+	public static Boolean blockIsWithinMinMax(Location block, Location min, Location max) {
+		Location b=block.getBlock().getLocation();
+		Location i=min.getBlock().getLocation();
+		Location a=max.getBlock().getLocation();
+		if(b.getY() <= a.getY() &&
+				b.getY() >= i.getY() &&
+				b.getX() <=a.getX() &&
+				b.getX() >= i.getX() &&
+				b.getZ() <= a.getZ() &&
+				b.getZ() >= i.getZ()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	/**
 	 * Show's's a Player to An Array Of Players
 	 * @param player - Player's name
